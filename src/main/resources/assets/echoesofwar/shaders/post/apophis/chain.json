@@ -1,0 +1,147 @@
+{
+  "targets": {
+    "final": {},
+    "smog_low_res": {},
+    "smog_shadow": {},
+    "smog_bloom_a": {},
+    "smog_bloom_b": {}
+  },
+  "passes": [
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/smog/raymarch",
+      "inputs": [
+        {
+          "sampler_name": "MainDepth",
+          "target": "depth_main",
+          "use_depth_buffer": true
+        }
+      ],
+      "output": "smog_low_res",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/smog/shadow",
+      "inputs": [
+        {
+          "sampler_name": "MainDepth",
+          "target": "depth_main",
+          "use_depth_buffer": true
+        }
+      ],
+      "output": "smog_shadow",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/bloom/extract",
+      "inputs": [
+        {
+          "sampler_name": "Diffuse",
+          "target": "minecraft:main",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "MainDepth",
+          "target": "depth_main",
+          "use_depth_buffer": true
+        },
+        {
+          "sampler_name": "Glow",
+          "target": "echoesofwar:apophis_glow",
+          "bilinear": true
+        }
+      ],
+      "output": "smog_bloom_a",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/bloom/blur_h",
+      "inputs": [
+        {
+          "sampler_name": "Bloom",
+          "target": "smog_bloom_a",
+          "bilinear": true
+        }
+      ],
+      "output": "smog_bloom_b",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/bloom/blur_v",
+      "inputs": [
+        {
+          "sampler_name": "Bloom",
+          "target": "smog_bloom_b",
+          "bilinear": true
+        }
+      ],
+      "output": "smog_bloom_a",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/composite",
+      "inputs": [
+        {
+          "sampler_name": "Diffuse",
+          "target": "minecraft:main"
+        },
+        {
+          "sampler_name": "Cloud",
+          "target": "smog_low_res",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Shadow",
+          "target": "smog_shadow",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Bloom",
+          "target": "smog_bloom_a",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Glow",
+          "target": "echoesofwar:apophis_glow"
+        },
+        {
+          "sampler_name": "MainDepth",
+          "target": "depth_main",
+          "use_depth_buffer": true
+        }
+      ],
+      "output": "final",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "minecraft:post/blit",
+      "inputs": [
+        {
+          "sampler_name": "In",
+          "target": "final"
+        }
+      ],
+      "output": "minecraft:main",
+      "uniforms": {
+        "BlitConfig": [
+          {
+            "name": "ColorModulate",
+            "type": "vec4",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

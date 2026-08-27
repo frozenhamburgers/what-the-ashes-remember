@@ -1,0 +1,20 @@
+{
+  "itemGroup.echoesofwar": "Example Mod Tab",
+  "block.echoesofwar.example_block": "Example Block",
+  "item.echoesofwar.example_item": "Example Item",
+
+  "block.echoesofwar.talos_pandoras_box": "Talos's Pandora's Box",
+  "block.echoesofwar.apophis_pandoras_box": "Apophis's Pandora's Box",
+  "entity.echoesofwar.talos": "Talos",
+  "entity.echoesofwar.apophis": "Apophis",
+
+  "message.echoesofwar.apophis_pandoras_box.needs_daylight": "The box stirs toward the sun.",
+
+  "echoesofwar.configuration.title": "Echoes of War Configs",
+  "echoesofwar.configuration.section.echoesofwar.common.toml": "Echoes of War Configs",
+  "echoesofwar.configuration.section.echoesofwar.common.toml.title": "Echoes of War Configs",
+  "echoesofwar.configuration.items": "Item List",
+  "echoesofwar.configuration.logDirtBlock": "Log Dirt Block",
+  "echoesofwar.configuration.magicNumberIntroduction": "Magic Number Text",
+  "echoesofwar.configuration.magicNumber": "Magic Number"
+}
