@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:add",
+  "argument1": 148.0,
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": 14.0,
+    "argument2": "echoesofwar:nuclear_island/forbidding/cell_value"
+  }
+}

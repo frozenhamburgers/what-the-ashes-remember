@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "lithostitched:axis",
+    "axis": "y"
+  },
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": 3.5,
+    "argument2": {
+      "type": "minecraft:noise",
+      "noise": "echoesofwar:nuclear_island/podium_band",
+      "xz_scale": 1.0,
+      "y_scale": 0.0
+    }
+  }
+}

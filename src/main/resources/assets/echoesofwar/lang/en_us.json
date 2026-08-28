@@ -8,6 +8,9 @@
   "entity.echoesofwar.talos": "Talos",
   "entity.echoesofwar.apophis": "Apophis",
 
+  "biome.echoesofwar.landscape_of_thorns": "Landscape of Thorns",
+  "biome.echoesofwar.forbidding_blocks": "The Forbidding Blocks",
+
   "message.echoesofwar.apophis_pandoras_box.needs_daylight": "The box stirs toward the sun.",
 
   "echoesofwar.configuration.title": "Echoes of War Configs",

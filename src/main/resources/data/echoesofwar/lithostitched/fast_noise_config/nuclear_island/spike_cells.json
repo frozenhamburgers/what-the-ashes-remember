@@ -1,0 +1,8 @@
+{
+  "type": "lithostitched:cellular",
+  "frequency": 0.0076923077,
+  "salt": 8321,
+  "distance_function": "euclidean",
+  "return_type": "cell_value",
+  "jitter": 0.15
+}

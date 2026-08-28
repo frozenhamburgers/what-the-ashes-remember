@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "minecraft:mul",
+    "argument1": {
+      "type": "minecraft:y_clamped_gradient",
+      "from_y": 4,
+      "to_y": 32,
+      "from_value": 0.0,
+      "to_value": 1.0
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:add",
+        "argument1": {
+          "type": "minecraft:mul",
+          "argument1": {
+            "type": "minecraft:y_clamped_gradient",
+            "from_y": 184,
+            "to_y": 440,
+            "from_value": 1.0,
+            "to_value": 0.0
+          },
+          "argument2": {
+            "type": "minecraft:add",
+            "argument1": "echoesofwar:nuclear_island/terrain",
+            "argument2": 23.4375
+          }
+        },
+        "argument2": -23.4375
+      },
+      "argument2": 0.234375
+    }
+  },
+  "argument2": -0.234375
+}

@@ -38,6 +38,7 @@ repositories {
         }
         filter { includeGroupAndSubgroups('com.geckolib') }
     }
+    maven { url "https://www.cursemaven.com" }
 }
 
 base {
@@ -121,6 +122,7 @@ configurations {
 
 dependencies {
     implementation "com.geckolib:geckolib-neoforge-26.1.2:5.5.2"
+    implementation "curse.maven:lithostitched-936015:8659782"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

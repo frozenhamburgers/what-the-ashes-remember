@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:add",
+  "argument1": "echoesofwar:nuclear_island/island/island_warp_x",
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": 4480.0,
+    "argument2": {
+      "type": "lithostitched:fast_noise",
+      "config": "echoesofwar:nuclear_island/island_jitter_x",
+      "xz_scale": 1.0,
+      "y_scale": 0.0,
+      "shift_x": "echoesofwar:nuclear_island/island/island_warp_x",
+      "shift_y": 0.0,
+      "shift_z": "echoesofwar:nuclear_island/island/island_warp_z"
+    }
+  }
+}

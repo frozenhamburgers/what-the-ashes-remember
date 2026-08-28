@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:cache_once",
+  "argument": {
+    "type": "minecraft:max",
+    "argument1": {
+      "type": "minecraft:max",
+      "argument1": "echoesofwar:nuclear_island/island/island",
+      "argument2": "echoesofwar:nuclear_island/thorns/spikes"
+    },
+    "argument2": {
+      "type": "minecraft:max",
+      "argument1": "echoesofwar:nuclear_island/forbidding/podium",
+      "argument2": "echoesofwar:nuclear_island/forbidding/blocks"
+    }
+  }
+}

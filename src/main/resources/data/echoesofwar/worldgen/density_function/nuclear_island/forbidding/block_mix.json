@@ -1,0 +1,9 @@
+{
+  "type": "lithostitched:fast_noise",
+  "config": "echoesofwar:nuclear_island/block_mix",
+  "xz_scale": 1.0,
+  "y_scale": 1.0,
+  "shift_x": 0.0,
+  "shift_y": 0.0,
+  "shift_z": 0.0
+}

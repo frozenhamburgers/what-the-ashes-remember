@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:add",
+  "argument1": "echoesofwar:nuclear_island/island/island",
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": 0.34,
+    "argument2": {
+      "type": "minecraft:noise",
+      "noise": "echoesofwar:nuclear_island/patch",
+      "xz_scale": 1.0,
+      "y_scale": 1.0
+    }
+  }
+}

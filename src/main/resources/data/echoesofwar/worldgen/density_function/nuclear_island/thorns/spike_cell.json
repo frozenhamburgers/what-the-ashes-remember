@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "lithostitched:fast_noise",
+    "config": "echoesofwar:nuclear_island/spike_cells",
+    "xz_scale": 1.0,
+    "y_scale": 0.0,
+    "shift_x": "echoesofwar:nuclear_island/thorns/warp_x",
+    "shift_y": 0.0,
+    "shift_z": "echoesofwar:nuclear_island/thorns/warp_z"
+  }
+}

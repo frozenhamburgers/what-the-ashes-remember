@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:mul",
+  "argument1": 1.5,
+  "argument2": {
+    "type": "lithostitched:cos",
+    "argument": {
+      "type": "minecraft:mul",
+      "argument1": 3.141592653589793,
+      "argument2": "echoesofwar:nuclear_island/thorns/spike_cell"
+    }
+  }
+}

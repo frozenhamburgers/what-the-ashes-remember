@@ -37,14 +37,6 @@ public class EntityEvents {
             event.put(ModEntities.APOPHIS.get(), ApophisEntity.createAttributes().build());
         }
 
-        @SubscribeEvent
-        public static void onBuildCreativeTab(BuildCreativeModeTabContentsEvent event) {
-            if (event.getTabKey() == EchoesofWar.EXAMPLE_TAB.getKey()) {
-                event.accept(ModBlocks.TALOS_PANDORAS_BOX_ITEM);
-                event.accept(ModBlocks.APOPHIS_PANDORAS_BOX_ITEM);
-            }
-        }
-
         // cancels shift dismount while Talos is carrying the player, server only
         @SubscribeEvent
         public static void onEntityMount(EntityMountEvent event) {

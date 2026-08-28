@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:range_choice",
+  "input": "echoesofwar:nuclear_island/forbidding/mask",
+  "min_inclusive": 0.0,
+  "max_exclusive": 1000000.0,
+  "when_out_of_range": -64.0,
+  "when_in_range": {
+    "type": "minecraft:mul",
+    "argument1": 4.0,
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": 84.0,
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": -1.0,
+        "argument2": {
+          "type": "lithostitched:axis",
+          "axis": "y"
+        }
+      }
+    }
+  }
+}

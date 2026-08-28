@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:range_choice",
+  "input": "echoesofwar:nuclear_island/island/island_mask",
+  "min_inclusive": -0.05,
+  "max_exclusive": 1000000.0,
+  "when_out_of_range": -64.0,
+  "when_in_range": {
+    "type": "minecraft:range_choice",
+    "input": "echoesofwar:nuclear_island/thorns/spike_gate",
+    "min_inclusive": 0.0,
+    "max_exclusive": 1000000.0,
+    "when_out_of_range": -64.0,
+    "when_in_range": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:add",
+        "argument1": -5.5,
+        "argument2": {
+          "type": "minecraft:mul",
+          "argument1": -6.5,
+          "argument2": {
+            "type": "lithostitched:fast_noise",
+            "config": "echoesofwar:nuclear_island/spike_sites",
+            "xz_scale": 1.0,
+            "y_scale": 0.0,
+            "shift_x": {
+              "type": "minecraft:add",
+              "argument1": "echoesofwar:nuclear_island/thorns/warp_x",
+              "argument2": "echoesofwar:nuclear_island/thorns/lean_x"
+            },
+            "shift_y": 0.0,
+            "shift_z": {
+              "type": "minecraft:add",
+              "argument1": "echoesofwar:nuclear_island/thorns/warp_z",
+              "argument2": "echoesofwar:nuclear_island/thorns/lean_z"
+            }
+          }
+        }
+      },
+      "argument2": {
+        "type": "minecraft:y_clamped_gradient",
+        "from_y": 20,
+        "from_value": 0.0,
+        "to_y": 182,
+        "to_value": -1.0
+      }
+    }
+  }
+}

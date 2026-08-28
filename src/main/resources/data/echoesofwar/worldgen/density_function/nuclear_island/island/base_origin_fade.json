@@ -1,0 +1,57 @@
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:mul",
+    "argument1": 0.01,
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": -2070.0,
+      "argument2": {
+        "type": "lithostitched:sqrt",
+        "argument": {
+          "type": "minecraft:add",
+          "argument1": {
+            "type": "minecraft:mul",
+            "argument1": {
+              "type": "minecraft:add",
+              "argument1": {
+                "type": "lithostitched:axis",
+                "axis": "x"
+              },
+              "argument2": "echoesofwar:nuclear_island/thorns/lean_x"
+            },
+            "argument2": {
+              "type": "minecraft:add",
+              "argument1": {
+                "type": "lithostitched:axis",
+                "axis": "x"
+              },
+              "argument2": "echoesofwar:nuclear_island/thorns/lean_x"
+            }
+          },
+          "argument2": {
+            "type": "minecraft:mul",
+            "argument1": {
+              "type": "minecraft:add",
+              "argument1": {
+                "type": "lithostitched:axis",
+                "axis": "z"
+              },
+              "argument2": "echoesofwar:nuclear_island/thorns/lean_z"
+            },
+            "argument2": {
+              "type": "minecraft:add",
+              "argument1": {
+                "type": "lithostitched:axis",
+                "axis": "z"
+              },
+              "argument2": "echoesofwar:nuclear_island/thorns/lean_z"
+            }
+          }
+        }
+      }
+    }
+  },
+  "min": -64.0,
+  "max": 0.0
+}

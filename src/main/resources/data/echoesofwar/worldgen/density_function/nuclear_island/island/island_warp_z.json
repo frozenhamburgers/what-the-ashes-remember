@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:mul",
+      "argument1": 3000.0,
+      "argument2": {
+        "type": "minecraft:noise",
+        "noise": "echoesofwar:nuclear_island/island_macro_z",
+        "xz_scale": 1.0,
+        "y_scale": 0.0
+      }
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 300.0,
+        "argument2": {
+          "type": "minecraft:noise",
+          "noise": "echoesofwar:nuclear_island/island_drift_z",
+          "xz_scale": 1.0,
+          "y_scale": 0.0
+        }
+      },
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": 200.0,
+        "argument2": {
+          "type": "minecraft:noise",
+          "noise": "echoesofwar:nuclear_island/island_lobe_z",
+          "xz_scale": 1.0,
+          "y_scale": 0.0
+        }
+      }
+    }
+  }
+}

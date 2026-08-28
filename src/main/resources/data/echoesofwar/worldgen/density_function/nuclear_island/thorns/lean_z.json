@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:mul",
+  "argument1": {
+    "type": "minecraft:y_clamped_gradient",
+    "from_y": 20,
+    "from_value": 0.0,
+    "to_y": 182,
+    "to_value": 1.0
+  },
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": "echoesofwar:nuclear_island/thorns/spike_tilt",
+    "argument2": {
+      "type": "lithostitched:sin",
+      "argument": {
+        "type": "minecraft:mul",
+        "argument1": 3.141592653589793,
+        "argument2": "echoesofwar:nuclear_island/thorns/spike_cell"
+      }
+    }
+  }
+}
