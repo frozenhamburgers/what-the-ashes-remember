@@ -3,23 +3,27 @@
   "argument1": {
     "type": "minecraft:add",
     "argument1": {
-      "type": "minecraft:mul",
-      "argument1": 0.0015,
-      "argument2": "echoesofwar:nuclear_island/island/base_island_inset"
-    },
-    "argument2": {
-      "type": "minecraft:mul",
-      "argument1": 0.06,
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 0.0015,
+        "argument2": "echoesofwar:nuclear_island/island/base_island_inset"
+      },
       "argument2": {
-        "type": "minecraft:shifted_noise",
-        "noise": "echoesofwar:nuclear_island/island_edge",
-        "xz_scale": 1.0,
-        "y_scale": 0.0,
-        "shift_x": "echoesofwar:nuclear_island/thorns/lean_x",
-        "shift_y": 0.0,
-        "shift_z": "echoesofwar:nuclear_island/thorns/lean_z"
+        "type": "minecraft:mul",
+        "argument1": 0.06,
+        "argument2": {
+          "type": "minecraft:shifted_noise",
+          "noise": "echoesofwar:nuclear_island/island_edge",
+          "xz_scale": 1.0,
+          "y_scale": 0.0,
+          "shift_x": "echoesofwar:nuclear_island/thorns/lean_x",
+          "shift_y": 0.0,
+          "shift_z": "echoesofwar:nuclear_island/thorns/lean_z"
+        }
       }
-    }
+    },
+    "argument2": "echoesofwar:nuclear_island/island/base_origin_fade"
   },
-  "argument2": "echoesofwar:nuclear_island/island/base_origin_fade"
+  "argument2": "echoesofwar:nuclear_island/island/base_origin_cell"
 }

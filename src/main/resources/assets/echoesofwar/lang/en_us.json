@@ -1,23 +1,30 @@
 {
-  "itemGroup.echoesofwar": "Example Mod Tab",
-  "block.echoesofwar.example_block": "Example Block",
-  "item.echoesofwar.example_item": "Example Item",
+  "itemGroup.echoesofwar": "What the Ashes Remember",
 
   "block.echoesofwar.talos_pandoras_box": "Talos's Pandora's Box",
   "block.echoesofwar.apophis_pandoras_box": "Apophis's Pandora's Box",
   "entity.echoesofwar.talos": "Talos",
   "entity.echoesofwar.apophis": "Apophis",
 
+  "item.echoesofwar.key_of_conquest": "Key of Conquest",
+  "item.echoesofwar.key_of_industry": "Key of Industry",
+  "item.echoesofwar.misery_of_conquest": "Misery of Conquest",
+  "item.echoesofwar.hope_of_creation": "Hope of Creation",
+  "item.echoesofwar.misery_of_industry": "Misery of Industry",
+  "item.echoesofwar.hope_of_progress": "Hope of Progress",
+  "item.echoesofwar.misery_of_man": "Misery of Man",
+
   "biome.echoesofwar.landscape_of_thorns": "Landscape of Thorns",
   "biome.echoesofwar.forbidding_blocks": "The Forbidding Blocks",
 
+  "music.echoesofwar.this_place_is_a_message": "This Place Is a Message",
+
   "message.echoesofwar.apophis_pandoras_box.needs_daylight": "The box stirs toward the sun.",
+  "message.echoesofwar.crucible_of_calamity.misery_used": "The Crucible of Calamity stirs...",
 
   "echoesofwar.configuration.title": "Echoes of War Configs",
   "echoesofwar.configuration.section.echoesofwar.common.toml": "Echoes of War Configs",
   "echoesofwar.configuration.section.echoesofwar.common.toml.title": "Echoes of War Configs",
-  "echoesofwar.configuration.items": "Item List",
-  "echoesofwar.configuration.logDirtBlock": "Log Dirt Block",
-  "echoesofwar.configuration.magicNumberIntroduction": "Magic Number Text",
-  "echoesofwar.configuration.magicNumber": "Magic Number"
+  "echoesofwar.configuration.volumetricResolutionScale": "Volumetric Resolution Scale",
+  "echoesofwar.configuration.atmosphereIntensity": "Apophis Ambient Effect"
 }

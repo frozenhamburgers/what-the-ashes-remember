@@ -1,5 +1,6 @@
 package net.jelly.echoesofwar.entity.talos;
 
+import net.jelly.echoesofwar.item.ModItems;
 import net.jelly.marionette_lib.utility.FabrikAnimator;
 import net.jelly.marionette_lib.utility.Limb;
 import net.jelly.marionette_lib.utility.Marionette;
@@ -13,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -203,6 +205,12 @@ public class TalosEntity extends Monster implements Marionette {
         // reserve a contiguous id block for this entity and all its parts, so setId() below can hand
         // out ids that won't collide with other entities
         this.setId(ENTITY_COUNTER.getAndAdd(getMarionetteParts().length + 1) + 1);
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean killedByPlayer) {
+        super.dropCustomDeathLoot(level, source, killedByPlayer);
+        this.spawnAtLocation(level, ModItems.KEY_OF_CONQUEST.get());
     }
 
     private static float scaled(float baseValue) {

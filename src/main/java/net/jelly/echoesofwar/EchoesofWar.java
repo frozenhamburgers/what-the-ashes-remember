@@ -33,6 +33,8 @@ import net.jelly.echoesofwar.block.ModBlockEntities;
 import net.jelly.echoesofwar.entity.ModEntities;
 import net.jelly.echoesofwar.entity.apophis.smog.ApophisWorldEvents;
 import net.jelly.echoesofwar.entity.talos.TalosWorldEvents;
+import net.jelly.echoesofwar.item.ModItems;
+import net.jelly.echoesofwar.sound.ModSounds;
 import net.jelly.echoesofwar.worldgen.ModWorldgen;
 import team.lodestar.lodestone.registry.common.LodestoneAttachmentTypes;
 import team.lodestar.lodestone.registry.common.LodestoneWorldEventTypes;
@@ -68,6 +70,13 @@ public class EchoesofWar {
             .displayItems((parameters, output) -> {
                 output.accept(ModBlocks.TALOS_PANDORAS_BOX_ITEM.get());
                 output.accept(ModBlocks.APOPHIS_PANDORAS_BOX_ITEM.get());
+                output.accept(ModItems.KEY_OF_CONQUEST.get());
+                output.accept(ModItems.KEY_OF_INDUSTRY.get());
+                output.accept(ModItems.MISERY_OF_CONQUEST.get());
+                output.accept(ModItems.HOPE_OF_CREATION.get());
+                output.accept(ModItems.MISERY_OF_INDUSTRY.get());
+                output.accept(ModItems.HOPE_OF_PROGRESS.get());
+                output.accept(ModItems.MISERY_OF_MAN.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -87,6 +96,7 @@ public class EchoesofWar {
 
         // Force load classes before deferred registeries are registered above
         ModBlocks.init();
+        ModItems.init();
         TalosWorldEvents.init();
         ApophisWorldEvents.init();
         ModEntities.init();
@@ -97,6 +107,12 @@ public class EchoesofWar {
         // biome sources
         ModWorldgen.init();
         ModWorldgen.BIOME_SOURCES.register(modEventBus);
+        ModWorldgen.STRUCTURE_PLACEMENTS.register(modEventBus);
+        ModWorldgen.STRUCTURE_TYPES.register(modEventBus);
+        ModWorldgen.STRUCTURE_PIECES.register(modEventBus);
+
+        ModSounds.init();
+        ModSounds.SOUND_EVENTS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (EchoesofWar) to respond directly to events.
@@ -113,15 +129,15 @@ public class EchoesofWar {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-        }
-
-        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
+//        LOGGER.info("HELLO FROM COMMON SETUP");
+//
+//        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
+//            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
+//        }
+//
+//        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
+//
+//        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
     // Add the example block item to the building blocks tab

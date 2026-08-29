@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "echoesofwar:misery_of_conquest",
+    "echoesofwar:misery_of_industry"
+  ],
+  "result": {
+    "id": "echoesofwar:misery_of_man"
+  }
+}

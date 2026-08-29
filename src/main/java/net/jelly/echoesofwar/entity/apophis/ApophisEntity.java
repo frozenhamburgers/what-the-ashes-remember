@@ -4,6 +4,7 @@ import net.jelly.echoesofwar.entity.apophis.goals.ApophisChargeGoal;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisDolphinGoal;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisFlightGoal;
 import net.jelly.echoesofwar.entity.apophis.smog.ApophisSmogWorldEvent;
+import net.jelly.echoesofwar.item.ModItems;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisIdleGoal;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisSettleGoal;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisTargetMobGoal;
@@ -27,13 +28,16 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.clock.WorldClocks;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -361,6 +365,35 @@ public class ApophisEntity extends Monster implements Marionette {
 
     public ApophisPartEntity head() {
         return segments[SEGMENT_COUNT - 1];
+    }
+
+    // the head isn't guaranteed to be above ground when Apophis dies (it may be mid-burrow), so the key
+    // is dropped from whichever segment ended up closest to the entity that dealt the killing blow instead
+    @Override
+    protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean killedByPlayer) {
+        super.dropCustomDeathLoot(level, source, killedByPlayer);
+
+        Entity killer = source.getEntity();
+        Vec3 dropAt = killer != null ? nearestSegmentPosition(killer.position()) : headPosition();
+
+        ItemEntity keyEntity = new ItemEntity(level, dropAt.x, dropAt.y, dropAt.z, new ItemStack(ModItems.KEY_OF_INDUSTRY.get()));
+        keyEntity.setDefaultPickUpDelay();
+        level.addFreshEntity(keyEntity);
+    }
+
+    private Vec3 nearestSegmentPosition(Vec3 point) {
+        ApophisPartEntity nearest = segments[0];
+        double bestDistSq = Double.MAX_VALUE;
+
+        for (ApophisPartEntity segment : segments) {
+            double distSq = segment.position().distanceToSqr(point);
+            if (distSq < bestDistSq) {
+                bestDistSq = distSq;
+                nearest = segment;
+            }
+        }
+
+        return nearest.position();
     }
 
     public Vec3 headPosition() {

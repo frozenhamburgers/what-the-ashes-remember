@@ -2,6 +2,7 @@ package net.jelly.echoesofwar.entity;
 
 import net.jelly.echoesofwar.EchoesofWar;
 import net.jelly.echoesofwar.block.ApophisBoxRenderer;
+import net.jelly.echoesofwar.block.CrucibleOfCalamityRenderer;
 import net.jelly.echoesofwar.block.ModBlocks;
 import net.jelly.echoesofwar.block.ModBlockEntities;
 import net.jelly.echoesofwar.entity.apophis.ApophisEntity;
@@ -66,6 +67,7 @@ public class EntityEvents {
             event.registerEntityRenderer(ModEntities.APOPHIS.get(), ApophisRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.TALOS_PANDORAS_BOX.get(), TalosBoxRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.APOPHIS_PANDORAS_BOX.get(), ApophisBoxRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CRUCIBLE_OF_CALAMITY.get(), CrucibleOfCalamityRenderer::new);
 
         }
     }

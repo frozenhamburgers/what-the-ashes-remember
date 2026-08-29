@@ -41,6 +41,28 @@ public class ModBlocks {
             "apophis_pandoras_box", APOPHIS_PANDORAS_BOX
     );
 
+    // no item form/recipe/creative registration - only generated naturally, as part of a structure template
+    public static final DeferredBlock<CrucibleOfCalamityBlock> CRUCIBLE_OF_CALAMITY = EchoesofWar.BLOCKS.registerBlock(
+            "crucible_of_calamity",
+            CrucibleOfCalamityBlock::new,
+            (UnaryOperator<BlockBehaviour.Properties>) properties -> properties
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .sound(SoundType.STONE)
+                    .strength(-1.0f, 3600000.0f)
+                    .noOcclusion()
+    );
+
+    // fills the other 44 cells of the crucible's 3x3x5 footprint - same properties, no item/recipe/creative registration
+    public static final DeferredBlock<CrucibleOfCalamityPartBlock> CRUCIBLE_OF_CALAMITY_PART = EchoesofWar.BLOCKS.registerBlock(
+            "crucible_of_calamity_part",
+            CrucibleOfCalamityPartBlock::new,
+            (UnaryOperator<BlockBehaviour.Properties>) properties -> properties
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .sound(SoundType.STONE)
+                    .strength(-1.0f, 3600000.0f)
+                    .noOcclusion()
+    );
+
     public static void init() {
     }
 }

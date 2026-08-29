@@ -10,7 +10,11 @@
     "argument2": {
       "type": "minecraft:max",
       "argument1": "echoesofwar:nuclear_island/forbidding/podium",
-      "argument2": "echoesofwar:nuclear_island/forbidding/blocks"
+      "argument2": {
+        "type": "minecraft:max",
+        "argument1": "echoesofwar:nuclear_island/forbidding/blocks",
+        "argument2": "echoesofwar:nuclear_island/forbidding/rubble"
+      }
     }
   }
 }

@@ -6,7 +6,8 @@
     "biome_source": {
       "type": "echoesofwar:thorn_end",
       "biome": "echoesofwar:landscape_of_thorns",
-      "blocks_biome": "echoesofwar:forbidding_blocks"
+      "blocks_biome": "echoesofwar:forbidding_blocks",
+      "arena_biome": "echoesofwar:containment_zone"
     }
   }
 }

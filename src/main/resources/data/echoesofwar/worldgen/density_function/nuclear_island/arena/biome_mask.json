@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 0.0015,
+        "argument2": {
+          "type": "minecraft:add",
+          "argument1": 180.0,
+          "argument2": {
+            "type": "minecraft:mul",
+            "argument1": -1.0,
+            "argument2": "echoesofwar:nuclear_island/arena/radius"
+          }
+        }
+      },
+      "argument2": "echoesofwar:nuclear_island/island/origin_fade"
+    },
+    "argument2": "echoesofwar:nuclear_island/island/origin_cell"
+  }
+}

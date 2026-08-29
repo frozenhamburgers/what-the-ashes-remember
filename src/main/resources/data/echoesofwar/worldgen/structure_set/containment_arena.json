@@ -1,0 +1,12 @@
+{
+  "structures": [
+    {
+      "structure": "echoesofwar:containment_arena",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "echoesofwar:island_center",
+    "salt": 7714
+  }
+}

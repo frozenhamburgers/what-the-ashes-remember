@@ -26,12 +26,298 @@
           "type": "minecraft:biome",
           "biome_is": [
             "echoesofwar:landscape_of_thorns",
-            "echoesofwar:forbidding_blocks"
+            "echoesofwar:forbidding_blocks",
+            "echoesofwar:containment_zone"
           ]
         },
         "then_run": {
           "type": "minecraft:sequence",
           "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "lithostitched:sample_density",
+                "density_function": "echoesofwar:nuclear_island/arena/radius",
+                "min_inclusive": -1000000000.0,
+                "max_inclusive": 260.0
+              },
+              "then_run": {
+                "type": "minecraft:sequence",
+                "sequence": [
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "lithostitched:sample_density",
+                      "density_function": "echoesofwar:nuclear_island/arena/radius",
+                      "min_inclusive": 200.0,
+                      "max_inclusive": 1000000000.0
+                    },
+                    "then_run": {
+                      "type": "minecraft:sequence",
+                      "sequence": [
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": -0.33333333333333337
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:black_concrete"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": 0.33333333333333326
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:coal_block"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:black_concrete_powder"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "lithostitched:sample_density",
+                      "density_function": "echoesofwar:nuclear_island/arena/radius",
+                      "min_inclusive": 160.0,
+                      "max_inclusive": 1000000000.0
+                    },
+                    "then_run": {
+                      "type": "minecraft:sequence",
+                      "sequence": [
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": -0.33333333333333337
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:cracked_polished_blackstone_bricks"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": 0.33333333333333326
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:blackstone"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:polished_blackstone_bricks"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "lithostitched:sample_density",
+                      "density_function": "echoesofwar:nuclear_island/arena/radius",
+                      "min_inclusive": 120.0,
+                      "max_inclusive": 1000000000.0
+                    },
+                    "then_run": {
+                      "type": "minecraft:sequence",
+                      "sequence": [
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": -0.33333333333333337
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:cracked_deepslate_tiles"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": 0.33333333333333326
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:cracked_deepslate_bricks"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:deepslate_tiles"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "lithostitched:sample_density",
+                      "density_function": "echoesofwar:nuclear_island/arena/radius",
+                      "min_inclusive": 70.0,
+                      "max_inclusive": 1000000000.0
+                    },
+                    "then_run": {
+                      "type": "minecraft:sequence",
+                      "sequence": [
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": -0.33333333333333337
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:basalt"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:condition",
+                          "if_true": {
+                            "type": "lithostitched:sample_density",
+                            "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                            "min_inclusive": -1000000000.0,
+                            "max_inclusive": 0.33333333333333326
+                          },
+                          "then_run": {
+                            "type": "minecraft:block",
+                            "result_state": {
+                              "Name": "minecraft:smooth_basalt"
+                            }
+                          }
+                        },
+                        {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:gray_concrete_powder"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "minecraft:sequence",
+                    "sequence": [
+                      {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "lithostitched:sample_density",
+                          "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                          "min_inclusive": -1000000000.0,
+                          "max_inclusive": -0.6
+                        },
+                        "then_run": {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:dead_brain_coral_block"
+                          }
+                        }
+                      },
+                      {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "lithostitched:sample_density",
+                          "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                          "min_inclusive": -1000000000.0,
+                          "max_inclusive": -0.19999999999999996
+                        },
+                        "then_run": {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:cobblestone"
+                          }
+                        }
+                      },
+                      {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "lithostitched:sample_density",
+                          "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                          "min_inclusive": -1000000000.0,
+                          "max_inclusive": 0.19999999999999996
+                        },
+                        "then_run": {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:cracked_stone_bricks"
+                          }
+                        }
+                      },
+                      {
+                        "type": "minecraft:condition",
+                        "if_true": {
+                          "type": "lithostitched:sample_density",
+                          "density_function": "echoesofwar:nuclear_island/arena/rubble_mix",
+                          "min_inclusive": -1000000000.0,
+                          "max_inclusive": 0.6000000000000001
+                        },
+                        "then_run": {
+                          "type": "minecraft:block",
+                          "result_state": {
+                            "Name": "minecraft:stone_bricks"
+                          }
+                        }
+                      },
+                      {
+                        "type": "minecraft:block",
+                        "result_state": {
+                          "Name": "minecraft:stone"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
             {
               "type": "minecraft:condition",
               "if_true": {
@@ -314,13 +600,13 @@
     ]
   },
   "noise_router": {
-    "barrier": 0.0,
+    "barrier": "echoesofwar:nuclear_island/island/site_distance",
     "fluid_level_floodedness": 0.0,
     "fluid_level_spread": 0.0,
     "lava": 0.0,
     "temperature": "echoesofwar:nuclear_island/island/island_mask",
     "vegetation": "echoesofwar:nuclear_island/forbidding/mask",
-    "continents": 0.0,
+    "continents": "echoesofwar:nuclear_island/arena/biome_mask",
     "erosion": {
       "type": "minecraft:cache_2d",
       "argument": {

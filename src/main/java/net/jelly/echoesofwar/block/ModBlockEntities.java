@@ -19,6 +19,11 @@ public class ModBlockEntities {
             () -> new BlockEntityType<>(ApophisBoxBlockEntity::new, ModBlocks.APOPHIS_PANDORAS_BOX.get())
     );
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrucibleOfCalamityBlockEntity>> CRUCIBLE_OF_CALAMITY = BLOCK_ENTITY_TYPES.register(
+            "crucible_of_calamity",
+            () -> new BlockEntityType<>(CrucibleOfCalamityBlockEntity::new, ModBlocks.CRUCIBLE_OF_CALAMITY.get())
+    );
+
     public static void init() {
     }
 }

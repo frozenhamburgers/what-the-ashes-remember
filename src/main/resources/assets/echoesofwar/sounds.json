@@ -1,0 +1,11 @@
+{
+  "this_place_is_a_message": {
+    "subtitle": "music.echoesofwar.this_place_is_a_message",
+    "sounds": [
+      {
+        "name": "echoesofwar:this_place_is_a_message",
+        "stream": true
+      }
+    ]
+  }
+}

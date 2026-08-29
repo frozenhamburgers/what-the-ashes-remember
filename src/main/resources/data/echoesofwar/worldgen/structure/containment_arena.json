@@ -1,0 +1,7 @@
+{
+  "type": "echoesofwar:containment_arena",
+  "biomes": "echoesofwar:containment_zone",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none"
+}
