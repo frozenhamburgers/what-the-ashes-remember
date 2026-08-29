@@ -15,7 +15,7 @@ ModJam 2026 and is not yet feature-complete.
 
 ## Acknowledgements & Third-Party Code
 
-This project requires **[GeckoLib](https://github.com/bernie-g/geckolib)**.
+This project requires **[GeckoLib](https://github.com/bernie-g/geckolib)**, **[Lithostitched](https://github.com/Apollounknowndev/lithostitched)**
 
 This project includes ported portions of the following libraries:
 
