@@ -7,12 +7,10 @@
 // the core of a torch flame.
 // ---------------------------------------------------------------------------
 
-// Brightness is measured on the max channel rather than on luminance.
+// Brightness is measured on the max channel rather than on luminance
 const float EMISSIVE_VALUE_LOW  = 0.55;
 const float EMISSIVE_VALUE_HIGH = 0.88;
 // Applied to saturation * warmth, so a colour has to be both vivid and red-leaning.
-// Torchlit stone sits near 0.13 on this measure and is correctly ignored; lava sits
-// above 0.8.
 const float EMISSIVE_WARMTH_LOW  = 0.42;
 const float EMISSIVE_WARMTH_HIGH = 0.72;
 
@@ -22,8 +20,7 @@ float emissiveMask(vec3 c) {
 	float mn = min(c.r, min(c.g, c.b));
 
 	float saturation = (mx - mn) / mx;
-	// How far the colour leans red-over-blue, normalised so it is a property of the
-	// hue and not of how bright the pixel happens to be.
+	// How far the colour leans red-over-blue, normalised so it is a property of hue not brightness
 	float warmth = clamp((c.r - c.b) / mx, 0.0, 1.0);
 
 	return smoothstep(EMISSIVE_VALUE_LOW, EMISSIVE_VALUE_HIGH, mx)
@@ -51,9 +48,8 @@ vec4 apophisGlowCurve(sampler2D glowMask, vec2 uv, float gamma, float gain) {
 	vec4 m = texture(glowMask, uv);
 	if (m.a < 1e-4) return vec4(0.0);
 
-	// Undo the premultiply to recover the hue, then re-apply intensity through the
-	// curve. Doing it in this order is what lets the curve change the brightness of
-	// a crack without also washing out its colour.
+	// undo the premultiply to recover the hue, then reapply intensity through the
+	// curve, changing brightenss without washing out color
 	vec3 hue = m.rgb / m.a;
 	float intensity = pow(m.a, gamma) * gain;
 	return vec4(hue * intensity, clamp(intensity, 0.0, 1.0));

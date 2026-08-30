@@ -28,8 +28,8 @@ public class ApophisBoxBlockEntity extends PandorasBoxBlockEntity {
     @Override
     protected List<ItemStack> rewardItems() {
         return List.of(
-                new ItemStack(ModItems.MISERY_OF_INDUSTRY.get()),
-                new ItemStack(ModItems.HOPE_OF_PROGRESS.get())
+                new ItemStack(ModItems.MISERY_OF_INDUSTRY.get())
+//                new ItemStack(ModItems.HOPE_OF_PROGRESS.get())
         );
     }
 }

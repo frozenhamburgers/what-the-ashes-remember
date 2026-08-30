@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
-// The Apophis palette, shared by the volumetric cloud and the atmosphere.
+// Apophis palette
 // ---------------------------------------------------------------------------
 
-// Sun pinned straight overhead; the Apophis fight always runs at solar zenith.
+// Sun pinned straight overhead
 const vec3  SUN_DIR      = vec3(0.0, 1.0, 0.0);
 const vec3  SUN_COLOR    = vec3(0.62, 0.61, 0.60);
 const vec3  SKY_COLOR    = vec3(0.19, 0.20, 0.23);

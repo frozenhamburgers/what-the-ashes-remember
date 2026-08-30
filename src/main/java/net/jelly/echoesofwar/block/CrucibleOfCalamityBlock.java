@@ -47,6 +47,7 @@ public class CrucibleOfCalamityBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         }
 
+        player.sendOverlayMessage(Component.translatable("message.echoesofwar.crucible_of_calamity.interaction_failure"));
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 

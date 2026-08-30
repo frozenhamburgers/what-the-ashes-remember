@@ -3,6 +3,7 @@ package net.jelly.echoesofwar.block;
 import com.mojang.serialization.MapCodec;
 import net.jelly.echoesofwar.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -46,6 +47,7 @@ public class CrucibleOfCalamityPartBlock extends Block {
             }
         }
 
+        player.sendOverlayMessage(Component.translatable("message.echoesofwar.crucible_of_calamity.interaction_failure"));
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 

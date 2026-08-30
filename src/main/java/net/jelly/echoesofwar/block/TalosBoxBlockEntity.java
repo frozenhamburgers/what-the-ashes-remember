@@ -28,8 +28,8 @@ public class TalosBoxBlockEntity extends PandorasBoxBlockEntity {
     @Override
     protected List<ItemStack> rewardItems() {
         return List.of(
-                new ItemStack(ModItems.MISERY_OF_CONQUEST.get()),
-                new ItemStack(ModItems.HOPE_OF_CREATION.get())
+                new ItemStack(ModItems.MISERY_OF_CONQUEST.get())
+//                new ItemStack(ModItems.HOPE_OF_CREATION.get())
         );
     }
 }

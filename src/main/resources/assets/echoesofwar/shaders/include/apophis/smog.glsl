@@ -16,25 +16,23 @@ layout(std140) uniform InstanceData {
 };
 
 // ---------------------------------------------------------------------------
-// Apophis's smog. Two volumes sharing one march and one lighting model:
+// Two volumes sharing one march and one lighting model:
 // the CLOUD, a ball of settled smoke centred on wherever Apophis climbed to,
 // which swells as it is fed, the JET, a cone from Apophis's mouth to that ball,
 // present only while it is actively spewing, whose noise lattice slides along
 // the cone's axis so thesmoke visibly streams from the head into the cloud.
 //
-// Both are smooth envelopes displaced by billow noise, giving packed cauliflower
-// lobes with creases between them.
+// Both are smooth envelopes displaced by billow noise
 // ---------------------------------------------------------------------------
 
 const int   MAX_STEPS           = 64;   // primary march budget (per instance)
 const int   MIN_STEPS           = 26;   // floor after distance LOD
 const float RENDER_DISTANCE_CAP = 512.0;
 
-// Extinction, slightly below the eruption's: this is a hanging bank of smoke
-// meant to be flown through, not a wall.
+// Extinction, slightly below the eruption's
 const float SIGMA_T = 2.05;
 
-// Noise frequencies, in lattice units (grain sets the unit's size in blocks).
+// Noise frequencies, in lattice units.
 const float F_MACRO = 0.26; // large masses
 const float F_LOBE  = 0.70; // billowing lobes
 const float F_FINE  = 1.50; // turbulent detail; faded out by the distance LOD
@@ -47,15 +45,14 @@ const float MOUTH_RADIUS = 3.0;
 const float JET_SPREAD = 0.20;
 // Extra flare toward the far end, as a multiplier on the spread.
 const float JET_FLARE = 1.35;
-// Size of one lattice unit inside the jet, in blocks. Fixed rather than derived
-// from the cloud radius, since the jet exists before the cloud does.
+// Size of one lattice unit inside the jet, in blocks. ffixed
 const float JET_GRAIN = 5.5;
 // How far past the leading edge the jet's density is feathered out, in blocks.
 const float FRONT_SOFTNESS = 6.0;
 
-// --- terrain shadow (see terrainShadow) ---
+// --- shadow ---
 const int   SHADOW_STEPS    = 10;
-// Scales the optical depth the shadow march accumulates.
+// Scales the optical depth the shadow march accumulates
 const float SHADOW_STRENGTH = 0.55;
 // How much light still reaches the ground under the thickest part of the cloud.
 const float SHADOW_MIN_LIGHT = 0.14;
