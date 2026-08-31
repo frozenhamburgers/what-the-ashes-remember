@@ -2,8 +2,10 @@ package net.jelly.echoesofwar.block;
 
 import com.mojang.serialization.MapCodec;
 import net.jelly.echoesofwar.item.ModItems;
+import net.jelly.echoesofwar.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -54,5 +56,10 @@ public class CrucibleOfCalamityBlock extends BaseEntityBlock {
     // TODO: hook for using misery of man on block
     protected void onMiseryOfManUsed(Level level, BlockPos pos, Player player) {
         player.sendSystemMessage(Component.translatable("message.echoesofwar.crucible_of_calamity.misery_used"));
+
+        if (level.getBlockEntity(pos) instanceof CrucibleOfCalamityBlockEntity blockEntity) {
+            blockEntity.triggerAnim(CrucibleOfCalamityBlockEntity.PULLEY_CONTROLLER, CrucibleOfCalamityBlockEntity.LIFT_ANIMATION);
+            level.playSound(null, pos, ModSounds.MECHANICAL_CREAK.get(), SoundSource.BLOCKS, 9F, 1.0F);
+        }
     }
 }

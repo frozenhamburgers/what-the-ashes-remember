@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:mul",
+  "argument1": {
+    "type": "minecraft:mul",
+    "argument1": "echoesofwar:nuclear_island/arena/cover_ring",
+    "argument2": "echoesofwar:nuclear_island/arena/cover_pick"
+  },
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": "echoesofwar:nuclear_island/arena/cover_shape",
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": 13.0,
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": 5.0,
+        "argument2": {
+          "type": "minecraft:noise",
+          "noise": "echoesofwar:nuclear_island/cover_bulk",
+          "xz_scale": 1.0,
+          "y_scale": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:mul",
+  "argument1": {
+    "type": "minecraft:clamp",
+    "input": {
+      "type": "minecraft:mul",
+      "argument1": 0.06666666666666667,
+      "argument2": {
+        "type": "minecraft:add",
+        "argument1": -80.0,
+        "argument2": "echoesofwar:nuclear_island/arena/radius"
+      }
+    },
+    "min": 0.0,
+    "max": 1.0
+  },
+  "argument2": {
+    "type": "minecraft:clamp",
+    "input": {
+      "type": "minecraft:mul",
+      "argument1": 0.05,
+      "argument2": {
+        "type": "minecraft:add",
+        "argument1": 155.0,
+        "argument2": {
+          "type": "minecraft:mul",
+          "argument1": -1.0,
+          "argument2": "echoesofwar:nuclear_island/arena/radius"
+        }
+      }
+    },
+    "min": 0.0,
+    "max": 1.0
+  }
+}
