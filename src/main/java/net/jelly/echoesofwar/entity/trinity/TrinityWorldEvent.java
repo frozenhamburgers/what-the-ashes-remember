@@ -1,5 +1,6 @@
 package net.jelly.echoesofwar.entity.trinity;
 
+import net.jelly.echoesofwar.entity.nuclear.DetonationSounds;
 import net.jelly.echoesofwar.entity.trinity.attack.AttackHitDetection;
 import net.jelly.echoesofwar.entity.trinity.attack.AttackSlot;
 import net.jelly.echoesofwar.entity.trinity.attack.BulletField;
@@ -232,8 +233,8 @@ public class TrinityWorldEvent extends WorldEventInstance {
         updateBossBar(level);
         demolition.tick(level);
 
-        // this should probably be tuned down, its way too long right now for both
-        if (phase == TrinityPhase.DETONATING || phase == TrinityPhase.DYING) {
+        if ((phase == TrinityPhase.DETONATING || phase == TrinityPhase.DYING)
+                && detonationTicks <= BLAST_DAMAGE_TICKS) {
             DetonationBlast.apply(level, detonationBase().add(0,4,0));
         }
 
@@ -358,23 +359,12 @@ public class TrinityWorldEvent extends WorldEventInstance {
         playDetonation(level, fatal);
     }
 
-    // TODO: custom detonation sound effects
     private void playDetonation(ServerLevel level, boolean fatal) {
-        BlockPos at = BlockPos.containing(detonationBase());
-        level.playSound(null, at, SoundEvents.GENERIC_EXPLODE.value(), SoundSource.HOSTILE, 10.0F, 0.35F);
-        level.playSound(null, at, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.HOSTILE, 10.0F, 0.5F);
-        if (fatal) {
-            level.playSound(null, at, SoundEvents.WITHER_DEATH, SoundSource.HOSTILE, 10.0F, 0.4F);
-        }
+        DetonationSounds.playDetonation(level, BlockPos.containing(detonationBase()), fatal);
     }
 
-    // TODO: countdown sound effects, for both spawning detonation and phase changes
     private void tickCountdownWarning(ServerLevel level, int lengthTicks) {
-        float progress = Mth.clamp(phaseTicks / (float) Math.max(lengthTicks, 1), 0f, 1f);
-        int interval = Math.max(1, Math.round(Mth.lerp(progress, 10f, 1f)));
-        if (phaseTicks % interval != 0) return;
-        level.playSound(null, BlockPos.containing(centre), SoundEvents.NOTE_BLOCK_BIT.value(),
-                SoundSource.HOSTILE, 3.0F, 0.6F + progress * 1.2F);
+        DetonationSounds.tickCountdownWarning(level, BlockPos.containing(centre), phaseTicks, lengthTicks);
     }
 
     private void setPhase(TrinityPhase next) {

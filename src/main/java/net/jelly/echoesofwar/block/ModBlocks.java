@@ -1,7 +1,9 @@
 package net.jelly.echoesofwar.block;
 
 import net.jelly.echoesofwar.EchoesofWar;
+import net.jelly.echoesofwar.item.GradientNameBlockItem;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -61,6 +63,22 @@ public class ModBlocks {
                     .sound(SoundType.STONE)
                     .strength(-1.0f, 3600000.0f)
                     .noOcclusion()
+    );
+
+    public static final DeferredBlock<DestroyerOfWorldsBlock> DESTROYER_OF_WORLDS = EchoesofWar.BLOCKS.registerBlock(
+            "destroyer_of_worlds",
+            DestroyerOfWorldsBlock::new,
+            (UnaryOperator<BlockBehaviour.Properties>) properties -> properties
+                    .mapColor(MapColor.COLOR_GRAY)
+                    .sound(SoundType.METAL)
+                    .strength(3.0f, 3600000.0f)
+    );
+
+    public static final DeferredItem<GradientNameBlockItem> DESTROYER_OF_WORLDS_ITEM = EchoesofWar.ITEMS.registerItem(
+            "destroyer_of_worlds",
+            properties -> new GradientNameBlockItem(DESTROYER_OF_WORLDS.get(), properties,
+                    "Destroyer of Worlds", 0xF0E5A0, 0x8FB6A0),
+            (UnaryOperator<Item.Properties>) properties -> properties.useBlockDescriptionPrefix()
     );
 
     public static void init() {

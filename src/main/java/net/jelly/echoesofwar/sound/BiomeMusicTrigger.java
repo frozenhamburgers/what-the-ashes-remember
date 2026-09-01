@@ -1,6 +1,8 @@
 package net.jelly.echoesofwar.sound;
 
 import net.jelly.echoesofwar.EchoesofWar;
+import net.jelly.echoesofwar.entity.apophis.ApophisEntity;
+import net.jelly.echoesofwar.entity.apophis.ApophisSummonWorldEvent;
 import net.jelly.echoesofwar.entity.trinity.TrinityWorldEvent;
 import net.jelly.echoesofwar.worldgen.ModWorldgen;
 import net.minecraft.client.Minecraft;
@@ -25,7 +27,9 @@ public final class BiomeMusicTrigger {
         ClientLevel level = mc.level;
         if (level == null || mc.player == null) return;
 
-        boolean noBosses = TrinityWorldEvent.find(level) == null;
+        boolean noBosses = TrinityWorldEvent.find(level) == null
+                && !ApophisEntity.isAliveOnClient()
+                && !ApophisSummonWorldEvent.isChargingOnClient();
 
 
         Holder<Biome> biome = level.getBiome(mc.player.blockPosition());

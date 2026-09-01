@@ -12,7 +12,16 @@
     "subtitle": "music.echoesofwar.trinity_soundtrack",
     "sounds": [
       {
-        "name": "echoesofwar:trinity_soundtrack",
+        "name": "echoesofwar:trinity_theme",
+        "stream": true
+      }
+    ]
+  },
+  "apophis_theme": {
+    "subtitle": "music.echoesofwar.apophis_theme",
+    "sounds": [
+      {
+        "name": "echoesofwar:apophis_theme",
         "stream": true
       }
     ]

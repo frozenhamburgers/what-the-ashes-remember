@@ -5,6 +5,8 @@ import net.jelly.echoesofwar.entity.ModEntities;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisFlightGoal;
 import net.jelly.echoesofwar.entity.apophis.smog.ApophisSmogWorldEvent;
 import net.jelly.echoesofwar.entity.apophis.smog.ApophisWorldEvents;
+import net.jelly.echoesofwar.sound.ModMusicManager;
+import net.jelly.echoesofwar.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -37,6 +39,13 @@ public class ApophisSummonWorldEvent extends BossSummonWorldEvent {
     private long timeTransitionStart = -1L;
     private long timeTransitionTarget = -1L;
 
+    // whether a box is charging on the client, for BiomeMusicTrigger to defer to
+    private static boolean clientCharging;
+
+    public static boolean isChargingOnClient() {
+        return clientCharging;
+    }
+
     public ApophisSummonWorldEvent() {
         super(ApophisWorldEvents.APOPHIS_SUMMON.get());
     }
@@ -47,8 +56,18 @@ public class ApophisSummonWorldEvent extends BossSummonWorldEvent {
     }
 
     @Override
+    public void tick(Level level) {
+        if (level.isClientSide()) clientCharging = true;
+        super.tick(level);
+        if (discarded && level.isClientSide()) clientCharging = false;
+    }
+
+    @Override
     protected void tickCharge(Level level, float progress) {
-        if (level.isClientSide()) return;
+        if (level.isClientSide()) {
+            ModMusicManager.requestTrack(ModSounds.APOPHIS_THEME.get());
+            return;
+        }
 
         tickTimeTransition(level, progress);
 

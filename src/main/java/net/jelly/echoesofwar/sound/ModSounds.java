@@ -26,6 +26,11 @@ public class ModSounds {
             () -> SoundEvent.createVariableRangeEvent(
                     Identifier.fromNamespaceAndPath(EchoesofWar.MODID, "trinity_soundtrack")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> APOPHIS_THEME = SOUND_EVENTS.register(
+            "apophis_theme",
+            () -> SoundEvent.createVariableRangeEvent(
+                    Identifier.fromNamespaceAndPath(EchoesofWar.MODID, "apophis_theme")));
+
     public static void init() {
     }
 }

@@ -2,19 +2,15 @@ package net.jelly.echoesofwar.entity.nuclear;
 
 import net.jelly.echoesofwar.entity.nuclear.fx.NuclearDetonationFx;
 import net.jelly.echoesofwar.entity.nuclear.fx.NuclearDetonationPostProcessor;
+import net.jelly.echoesofwar.entity.trinity.DetonationBlast;
+import net.jelly.echoesofwar.entity.trinity.TrinityTuning;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventInstance;
 
-// the standalone nuclear detonation. owns the whole lifecycle: it is spawned
-// at a ground zero, runs for a fixed number of ticks, and discards itself.
-//
-// there is deliberately no server-side phase machine like ApophisSmogWorldEvent's - nothing external
-// can cut a detonation short, so both sides just count ticks from the single sync at creation and
-// every stage of the animation is derived in the shader from age / lifetime. that keeps the timing
-// in one place (this file plus the constants in include/nuclear/detonation.glsl) and means no
-// setDirty() traffic for the whole 75 seconds
 public class NuclearDetonationWorldEvent extends WorldEventInstance {
 
     /** the single knob for how long the whole detonation -> dissipation sequence takes */
@@ -35,6 +31,9 @@ public class NuclearDetonationWorldEvent extends WorldEventInstance {
 
     private int ticks;
 
+    private boolean groundEffects;
+    private final NuclearCrater crater = new NuclearCrater();
+
     // CLIENT ONLY
     private NuclearDetonationFx fx;
 
@@ -54,25 +53,48 @@ public class NuclearDetonationWorldEvent extends WorldEventInstance {
         return this;
     }
 
+    public NuclearDetonationWorldEvent withGroundEffects(BlockPos groundZero) {
+        this.groundEffects = true;
+        this.crater.schedule(groundZero);
+        return this;
+    }
+
     @Override
     public boolean shouldSave() {
-        // purely transient, same as the Apophis smog: a detonation half-way through its sequence is
-        // not worth restoring across a save
         return false;
     }
 
-    // uses the level parameter rather than the inherited `level` field, which isn't populated client side
     @Override
     public void tick(Level level) {
         ticks++;
 
         if (ticks >= lifetimeTicks) {
             removeFx();
+            crater.cancel();
             this.discarded = true;
             return;
         }
 
-        if (level.isClientSide()) tickShader();
+        if (level.isClientSide()) {
+            tickShader();
+            return;
+        }
+
+        if (groundEffects) tickGround((ServerLevel) level);
+    }
+
+    private void tickGround(ServerLevel level) {
+        if (ticks <= TrinityTuning.BLAST_DAMAGE_TICKS) {
+            DetonationBlast.apply(level, base.add(0.0, 4.0, 0.0));
+        }
+        crater.tick(level);
+    }
+
+    @Override
+    public void end(Level level) {
+        crater.cancel();
+        removeFx();
+        super.end(level);
     }
 
     // ------------------------ CLIENT

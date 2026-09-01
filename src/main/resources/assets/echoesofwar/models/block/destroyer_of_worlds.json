@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "echoesofwar:block/destroyer_of_worlds_top",
+    "side": "echoesofwar:block/destroyer_of_worlds"
+  }
+}

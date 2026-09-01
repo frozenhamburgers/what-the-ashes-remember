@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 78
+        },
+        {
+          "type": "minecraft:item",
+          "name": "echoesofwar:apophis_pandoras_box",
+          "weight": 2
+        }
+      ]
+    }
+  ],
+  "random_sequence": "echoesofwar:injection/apophis_pandoras_box"
+}

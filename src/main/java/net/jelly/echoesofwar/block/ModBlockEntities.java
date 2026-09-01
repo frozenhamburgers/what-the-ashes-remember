@@ -24,6 +24,11 @@ public class ModBlockEntities {
             () -> new BlockEntityType<>(CrucibleOfCalamityBlockEntity::new, ModBlocks.CRUCIBLE_OF_CALAMITY.get())
     );
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DestroyerOfWorldsBlockEntity>> DESTROYER_OF_WORLDS = BLOCK_ENTITY_TYPES.register(
+            "destroyer_of_worlds",
+            () -> new BlockEntityType<>(DestroyerOfWorldsBlockEntity::new, ModBlocks.DESTROYER_OF_WORLDS.get())
+    );
+
     public static void init() {
     }
 }

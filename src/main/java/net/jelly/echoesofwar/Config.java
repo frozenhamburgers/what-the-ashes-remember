@@ -37,6 +37,10 @@ public class Config {
             .comment("Seconds with no player inside the active range after which Trinity despawns.")
             .defineInRange("trinity.abandonTimeoutSeconds", 5, 1, 3600);
 
+    public static final ModConfigSpec.IntValue DESTROYER_OF_WORLDS_COUNTDOWN = BUILDER
+            .comment("Seconds between the Destroyer of Worlds being armed and its detonation.")
+            .defineInRange("destroyerOfWorlds.countdownSeconds", 20, 1, 300);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     // ------------------------------------------------------------------ client

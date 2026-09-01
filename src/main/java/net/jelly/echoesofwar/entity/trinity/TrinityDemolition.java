@@ -2,6 +2,7 @@ package net.jelly.echoesofwar.entity.trinity;
 
 import net.jelly.echoesofwar.block.CrucibleOfCalamityBlock;
 import net.jelly.echoesofwar.block.CrucibleOfCalamityPartBlock;
+import net.jelly.echoesofwar.entity.nuclear.ScheduledDemolition;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
@@ -13,46 +14,27 @@ import static net.jelly.echoesofwar.entity.trinity.TrinityTuning.*;
 /**
  * Server only, destroys structure Trinity spawns in
  */
-public class TrinityDemolition {
+public class TrinityDemolition extends ScheduledDemolition {
 
     // cached offsets to save cost in radius tests per pos per layer
     private static int[] offsets;
     private static int offsetRadius = -1;
 
-    private int delay = -1; // tick suntil demolition begin, negative = not scheduled
-
     private int nextY;
     private int floorY;
-    private int centreX;
-    private int centreZ;
-    private boolean running;
 
     public void schedule(BlockPos groundZero) {
-        centreX = groundZero.getX();
-        centreZ = groundZero.getZ();
-        floorY = groundZero.getY();
+        schedule(groundZero, DEMOLITION_DELAY_TICKS);
+    }
+
+    @Override
+    protected void begin() {
+        floorY = centreY;
         nextY = floorY + DEMOLITION_HEIGHT;
-        delay = DEMOLITION_DELAY_TICKS;
-        running = true;
     }
 
-    public boolean isRunning() {
-        return running;
-    }
-
-    public void cancel() {
-        running = false;
-        delay = -1;
-    }
-
-    public void tick(ServerLevel level) {
-        if (!running) return;
-        if (delay > 0) {
-            delay--;
-            return;
-        }
-
-
+    @Override
+    protected boolean step(ServerLevel level) {
         int layers = Math.max(1, (DEMOLITION_HEIGHT + DEMOLITION_SPREAD_TICKS - 1) / DEMOLITION_SPREAD_TICKS);
 
         int[] circle = circleOffsets(DEMOLITION_RADIUS);
@@ -76,7 +58,7 @@ public class TrinityDemolition {
             }
         }
 
-        if (nextY <= floorY) running = false;
+        return nextY > floorY;
     }
 
     private static int[] circleOffsets(int radius) {

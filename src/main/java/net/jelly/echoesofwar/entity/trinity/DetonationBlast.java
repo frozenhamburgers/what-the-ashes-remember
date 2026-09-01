@@ -57,6 +57,23 @@ public final class DetonationBlast {
         }
     }
 
+    public static void applyInitial(ServerLevel level, Vec3 origin, double radius, float damage) {
+        AABB box = new AABB(origin.x - radius, origin.y - radius, origin.z - radius,
+                origin.x + radius, origin.y + radius, origin.z + radius);
+
+        List<LivingEntity> targets = level.getEntitiesOfClass(LivingEntity.class, box,
+                e -> e.isAlive() && !e.isSpectator());
+        if (targets.isEmpty()) return;
+
+        double r2 = radius * radius;
+        for (LivingEntity target : targets) {
+            if (target.position().distanceToSqr(origin) > r2) continue;
+
+            target.invulnerableTime = 0;
+            target.hurtServer(level, level.damageSources().explosion(null, null), damage);
+        }
+    }
+
     private static boolean exposed(ServerLevel level, Vec3 origin, Entity target) {
         AABB box = target.getBoundingBox();
         for (double[] point : SAMPLE_POINTS) {

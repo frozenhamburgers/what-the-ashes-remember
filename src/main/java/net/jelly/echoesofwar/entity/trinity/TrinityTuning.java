@@ -101,6 +101,7 @@ public final class TrinityTuning {
     public static final double BLAST_DAMAGE_RADIUS = 480.0;
     public static final float BLAST_DAMAGE_MIN = 2f;
     public static final float BLAST_DAMAGE_MAX = 8f;
+    public static final int BLAST_DAMAGE_TICKS = 300;
 
 
     // -------------------------------------------------- demolition

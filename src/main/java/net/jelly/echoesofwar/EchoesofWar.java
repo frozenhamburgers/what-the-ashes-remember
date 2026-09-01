@@ -79,6 +79,7 @@ public class EchoesofWar {
                 output.accept(ModItems.MISERY_OF_INDUSTRY.get());
 //                output.accept(ModItems.HOPE_OF_PROGRESS.get());
                 output.accept(ModItems.MISERY_OF_MAN.get());
+                output.accept(ModBlocks.DESTROYER_OF_WORLDS_ITEM.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.

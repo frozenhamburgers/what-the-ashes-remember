@@ -10,6 +10,8 @@ import net.jelly.echoesofwar.entity.apophis.goals.ApophisSettleGoal;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisTargetMobGoal;
 import net.jelly.echoesofwar.entity.apophis.goals.ApophisTargetPlayerGoal;
 import net.jelly.echoesofwar.entity.physics.WormControlPoint;
+import net.jelly.echoesofwar.sound.ModMusicManager;
+import net.jelly.echoesofwar.sound.ModSounds;
 import net.jelly.marionette_lib.utility.Limb;
 import net.jelly.marionette_lib.utility.Marionette;
 import net.minecraft.core.BlockPos;
@@ -48,6 +50,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.entity.PartEntity;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -167,6 +170,15 @@ public class ApophisEntity extends Monster implements Marionette {
     private boolean flightPending;
     private boolean settlePending;
     private int digSoundTicks;
+
+    // clientside music tracking
+    private static @Nullable ApophisEntity clientInstance;
+    private boolean musicHeld;
+
+    // whether a live Apophis instance exists on the client, for BiomeMusicTrigger to defer to
+    public static boolean isAliveOnClient() {
+        return clientInstance != null && clientInstance.isAlive();
+    }
 
     public ApophisEntity(EntityType<? extends ApophisEntity> type, Level level) {
         super(type, level);
@@ -326,6 +338,14 @@ public class ApophisEntity extends Monster implements Marionette {
     public void remove(RemovalReason removalReason) {
         super.remove(removalReason);
         removeMarionette(removalReason);
+
+        if (this.level().isClientSide()) {
+            if (clientInstance == this) clientInstance = null;
+            if (musicHeld) {
+                ModMusicManager.release();
+                musicHeld = false;
+            }
+        }
     }
 
     @Override
@@ -455,6 +475,12 @@ public class ApophisEntity extends Monster implements Marionette {
         }
 
         super.tick(); // goals run here
+
+        if (this.level().isClientSide()) {
+            clientInstance = this;
+            ModMusicManager.requestTrack(ModSounds.APOPHIS_THEME.get());
+            musicHeld = true;
+        }
 
         if (!this.level().isClientSide()) {
             // clear flying in case of abandoned goal
