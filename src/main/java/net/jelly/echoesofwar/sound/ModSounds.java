@@ -21,6 +21,11 @@ public class ModSounds {
             () -> SoundEvent.createVariableRangeEvent(
                     Identifier.fromNamespaceAndPath(EchoesofWar.MODID, "mechanical_creak")));
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> TRINITY_SOUNDTRACK = SOUND_EVENTS.register(
+            "trinity_soundtrack",
+            () -> SoundEvent.createVariableRangeEvent(
+                    Identifier.fromNamespaceAndPath(EchoesofWar.MODID, "trinity_soundtrack")));
+
     public static void init() {
     }
 }

@@ -1,7 +1,4 @@
-// ---------------------------------------------------------------------------
-// Separable gaussian for the bloom blur. Five taps standing in for nine, using
-// linear sampling to place each off-centre tap between two texels.
-// ---------------------------------------------------------------------------
+// seperate gaussian for the bloom blur, five taps, linear sampling placing off center taps between two texels
 const float BLUR_OFFSETS[3] = float[3](0.0, 1.3846153846, 3.2307692308);
 const float BLUR_WEIGHTS[3] = float[3](0.2270270270, 0.3162162162, 0.0702702703);
 

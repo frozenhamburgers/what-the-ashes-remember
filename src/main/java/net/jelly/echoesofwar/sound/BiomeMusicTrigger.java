@@ -1,10 +1,12 @@
 package net.jelly.echoesofwar.sound;
 
 import net.jelly.echoesofwar.EchoesofWar;
+import net.jelly.echoesofwar.entity.trinity.TrinityWorldEvent;
 import net.jelly.echoesofwar.worldgen.ModWorldgen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -23,12 +25,15 @@ public final class BiomeMusicTrigger {
         ClientLevel level = mc.level;
         if (level == null || mc.player == null) return;
 
+        boolean noBosses = TrinityWorldEvent.find(level) == null;
+
+
         Holder<Biome> biome = level.getBiome(mc.player.blockPosition());
-        if (biome.is(ModWorldgen.LANDSCAPE_OF_THORNS) || biome.is(ModWorldgen.FORBIDDING_BLOCKS)) {
+        if (biome.is(ModWorldgen.LANDSCAPE_OF_THORNS) || biome.is(ModWorldgen.FORBIDDING_BLOCKS) && noBosses) {
             ModMusicManager.requestTrack(ModSounds.THIS_PLACE_IS_A_MESSAGE.get());
-        } else if (biome.is(ModWorldgen.CONTAINMENT_ZONE)) {
+        } else if (biome.is(ModWorldgen.CONTAINMENT_ZONE) && noBosses) {
             ModMusicManager.requestSilence();
-        } else {
+        } else if (noBosses){
             ModMusicManager.release();
         }
     }

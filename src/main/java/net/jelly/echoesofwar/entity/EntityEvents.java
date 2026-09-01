@@ -10,6 +10,10 @@ import net.jelly.echoesofwar.entity.apophis.client.ApophisModel;
 import net.jelly.echoesofwar.entity.apophis.client.ApophisRenderer;
 import net.jelly.echoesofwar.entity.apophis.smog.ApophisPostProcessor;
 import net.jelly.echoesofwar.entity.talos.TalosEntity;
+import net.jelly.echoesofwar.entity.nuclear.NuclearDetonationCommand;
+import net.jelly.echoesofwar.entity.nuclear.fx.NuclearDetonationPostProcessor;
+import net.jelly.echoesofwar.entity.trinity.TrinityCommand;
+import net.jelly.echoesofwar.entity.trinity.fx.TrinityPostProcessor;
 import net.jelly.echoesofwar.block.TalosBoxRenderer;
 import net.jelly.echoesofwar.entity.talos.client.TalosModel;
 import net.jelly.echoesofwar.entity.talos.client.TalosRenderer;
@@ -30,6 +34,8 @@ public class EntityEvents {
     public static class Common {
         @SubscribeEvent
         public static void onRegisterCommands(RegisterCommandsEvent event) {
+            NuclearDetonationCommand.register(event.getDispatcher());
+            TrinityCommand.register(event.getDispatcher());
         }
 
         @SubscribeEvent
@@ -53,6 +59,8 @@ public class EntityEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             PostProcessHandler.addInstance(ApophisPostProcessor.INSTANCE);
+            PostProcessHandler.addInstance(NuclearDetonationPostProcessor.INSTANCE);
+            PostProcessHandler.addInstance(TrinityPostProcessor.INSTANCE);
         }
 
         @SubscribeEvent

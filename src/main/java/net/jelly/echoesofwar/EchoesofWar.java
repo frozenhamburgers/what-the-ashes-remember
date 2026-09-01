@@ -33,6 +33,8 @@ import net.jelly.echoesofwar.block.ModBlockEntities;
 import net.jelly.echoesofwar.entity.ModEntities;
 import net.jelly.echoesofwar.entity.apophis.smog.ApophisWorldEvents;
 import net.jelly.echoesofwar.entity.talos.TalosWorldEvents;
+import net.jelly.echoesofwar.entity.nuclear.NuclearWorldEvents;
+import net.jelly.echoesofwar.entity.trinity.TrinityWorldEvents;
 import net.jelly.echoesofwar.item.ModItems;
 import net.jelly.echoesofwar.sound.ModSounds;
 import net.jelly.echoesofwar.worldgen.ModWorldgen;
@@ -73,9 +75,9 @@ public class EchoesofWar {
                 output.accept(ModItems.KEY_OF_CONQUEST.get());
                 output.accept(ModItems.KEY_OF_INDUSTRY.get());
                 output.accept(ModItems.MISERY_OF_CONQUEST.get());
-                output.accept(ModItems.HOPE_OF_CREATION.get());
+//                output.accept(ModItems.HOPE_OF_CREATION.get());
                 output.accept(ModItems.MISERY_OF_INDUSTRY.get());
-                output.accept(ModItems.HOPE_OF_PROGRESS.get());
+//                output.accept(ModItems.HOPE_OF_PROGRESS.get());
                 output.accept(ModItems.MISERY_OF_MAN.get());
             }).build());
 
@@ -99,6 +101,8 @@ public class EchoesofWar {
         ModItems.init();
         TalosWorldEvents.init();
         ApophisWorldEvents.init();
+        NuclearWorldEvents.init();
+        TrinityWorldEvents.init();
         ModEntities.init();
         EchoesofWar.ENTITY_TYPES.register(modEventBus);
         ModBlockEntities.init();

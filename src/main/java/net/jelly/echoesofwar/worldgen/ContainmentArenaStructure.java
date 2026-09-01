@@ -22,7 +22,7 @@ public class ContainmentArenaStructure extends Structure {
     // radius/halflength of structure
     private static final int HALF_SIZE = 38;
 
-    private static final int GENERATION_HEIGHT = 85;
+    private static final int GENERATION_HEIGHT = 84;
 
     public ContainmentArenaStructure(Structure.StructureSettings settings) {
         super(settings);

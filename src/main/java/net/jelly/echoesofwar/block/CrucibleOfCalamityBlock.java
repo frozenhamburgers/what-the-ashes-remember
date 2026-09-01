@@ -5,7 +5,6 @@ import net.jelly.echoesofwar.item.ModItems;
 import net.jelly.echoesofwar.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +14,14 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.jelly.echoesofwar.entity.trinity.TrinityTuning;
+import net.jelly.echoesofwar.entity.trinity.TrinityWorldEvent;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventInstance;
 
 // controller cell of the crucible multiblock
 public class CrucibleOfCalamityBlock extends BaseEntityBlock {
@@ -53,13 +59,25 @@ public class CrucibleOfCalamityBlock extends BaseEntityBlock {
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
-    // TODO: hook for using misery of man on block
+    // spawns Trinity above the crucible, serverside
     protected void onMiseryOfManUsed(Level level, BlockPos pos, Player player) {
+        if (TrinityWorldEvent.find(level) != null) {
+            player.sendOverlayMessage(Component.translatable("message.echoesofwar.crucible_of_calamity.already_critical"));
+            return;
+        }
+
         player.sendSystemMessage(Component.translatable("message.echoesofwar.crucible_of_calamity.misery_used"));
 
-        if (level.getBlockEntity(pos) instanceof CrucibleOfCalamityBlockEntity blockEntity) {
-            blockEntity.triggerAnim(CrucibleOfCalamityBlockEntity.PULLEY_CONTROLLER, CrucibleOfCalamityBlockEntity.LIFT_ANIMATION);
-            level.playSound(null, pos, ModSounds.MECHANICAL_CREAK.get(), SoundSource.BLOCKS, 9F, 1.0F);
-        }
+        if (level.getBlockEntity(pos) instanceof CrucibleOfCalamityBlockEntity blockEntity) blockEntity.triggerAnim(CrucibleOfCalamityBlockEntity.PULLEY_CONTROLLER, CrucibleOfCalamityBlockEntity.LIFT_ANIMATION);
+        level.playSound(null, pos, ModSounds.MECHANICAL_CREAK.get(), SoundSource.BLOCKS, 9F, 1.0F);
+
+        Vec3 centre = Vec3.atCenterOf(pos).add(0.0, TrinityTuning.SPAWN_HEIGHT, 0.0);
+        float seed = (float) ((pos.getX() * 12.9898 + pos.getZ() * 78.233) % 1000.0);
+        WorldEventInstance trinity = new TrinityWorldEvent().setup(centre, seed);
+        trinity.setDirty();
+        WorldEventHandler.addWorldEvent(level, trinity);
+
+        level.playSound(null, pos, SoundEvents.WITHER_SPAWN, SoundSource.HOSTILE, 8.0F, 0.5F);
     }
+
 }

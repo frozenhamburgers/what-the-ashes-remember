@@ -8,6 +8,15 @@
       }
     ]
   },
+  "trinity_soundtrack": {
+    "subtitle": "music.echoesofwar.trinity_soundtrack",
+    "sounds": [
+      {
+        "name": "echoesofwar:trinity_soundtrack",
+        "stream": true
+      }
+    ]
+  },
   "mechanical_creak": {
     "sounds": [
       {

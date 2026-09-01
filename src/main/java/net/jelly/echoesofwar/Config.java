@@ -17,6 +17,26 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
+    // ------ COMMON
+    //  these NEED to be the same across the server and client. it would be a good idea to sync them later
+    // so its not wise to change these right now in multiplayer
+
+    public static final ModConfigSpec.IntValue TRINITY_SPAWN_COUNTDOWN = BUILDER
+            .comment("Seconds between Trinity being summoned and its opening nuclear detonation.")
+            .defineInRange("trinity.spawnCountdownSeconds", 20, 1, 300);
+
+    public static final ModConfigSpec.IntValue TRINITY_CRITICAL_COUNTDOWN = BUILDER
+            .comment("Seconds Trinity spends in its critical state before each mid-fight detonation.")
+            .defineInRange("trinity.criticalCountdownSeconds", 10, 1, 120);
+
+    public static final ModConfigSpec.DoubleValue TRINITY_ACTIVE_RANGE = BUILDER
+            .comment("Blocks from Trinity a player must be within to count as present.")
+            .defineInRange("trinity.activeRange", 200.0, 32.0, 2048.0);
+
+    public static final ModConfigSpec.IntValue TRINITY_ABANDON_TIMEOUT = BUILDER
+            .comment("Seconds with no player inside the active range after which Trinity despawns.")
+            .defineInRange("trinity.abandonTimeoutSeconds", 5, 1, 3600);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     // ------------------------------------------------------------------ client

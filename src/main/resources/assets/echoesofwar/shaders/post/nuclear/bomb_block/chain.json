@@ -1,0 +1,128 @@
+{
+  "targets": {
+    "final": {},
+    "nuclear_low_res": {},
+    "nuclear_bloom_a": {},
+    "nuclear_bloom_b": {},
+    "nuclear_impact": {}
+  },
+  "passes": [
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/nuclear/bomb_block/detonation/raymarch",
+      "inputs": [
+        {
+          "sampler_name": "MainDepth",
+          "target": "depth_main",
+          "use_depth_buffer": true
+        }
+      ],
+      "output": "nuclear_low_res",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/nuclear/bomb_block/bloom/extract",
+      "inputs": [
+        {
+          "sampler_name": "Cloud",
+          "target": "nuclear_low_res",
+          "bilinear": true
+        }
+      ],
+      "output": "nuclear_bloom_a",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/bloom/blur_h",
+      "inputs": [
+        {
+          "sampler_name": "Bloom",
+          "target": "nuclear_bloom_a",
+          "bilinear": true
+        }
+      ],
+      "output": "nuclear_bloom_b",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/apophis/bloom/blur_v",
+      "inputs": [
+        {
+          "sampler_name": "Bloom",
+          "target": "nuclear_bloom_b",
+          "bilinear": true
+        }
+      ],
+      "output": "nuclear_bloom_a",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/nuclear/bomb_block/impact/edges",
+      "inputs": [
+        {
+          "sampler_name": "MainDepth",
+          "target": "depth_main",
+          "use_depth_buffer": true
+        }
+      ],
+      "output": "nuclear_impact",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "echoesofwar:post/nuclear/bomb_block/composite",
+      "inputs": [
+        {
+          "sampler_name": "Diffuse",
+          "target": "minecraft:main"
+        },
+        {
+          "sampler_name": "Cloud",
+          "target": "nuclear_low_res",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Bloom",
+          "target": "nuclear_bloom_a",
+          "bilinear": true
+        },
+        {
+          "sampler_name": "Impact",
+          "target": "nuclear_impact",
+          "bilinear": true
+        }
+      ],
+      "output": "final",
+      "uniforms": {}
+    },
+    {
+      "vertex_shader": "minecraft:core/screenquad",
+      "fragment_shader": "minecraft:post/blit",
+      "inputs": [
+        {
+          "sampler_name": "In",
+          "target": "final"
+        }
+      ],
+      "output": "minecraft:main",
+      "uniforms": {
+        "BlitConfig": [
+          {
+            "name": "ColorModulate",
+            "type": "vec4",
+            "value": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

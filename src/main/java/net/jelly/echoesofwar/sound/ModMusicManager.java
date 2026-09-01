@@ -35,6 +35,7 @@ public final class ModMusicManager {
 
     // fades out whatever is currently playing, then fades this track in
     public static void requestTrack(SoundEvent sound) {
+//        System.out.println("requesting track: " + sound.toString());
         if (desiredTarget == Target.TRACK && sound.equals(desiredTrack)) return;
         desiredTarget = Target.TRACK;
         desiredTrack = sound;
@@ -42,6 +43,7 @@ public final class ModMusicManager {
 
     // fades out whatever is currently playing and holds silence until released.
     public static void requestSilence() {
+//        System.out.println("requesting silence");
         if (desiredTarget == Target.SILENCE) return;
         desiredTarget = Target.SILENCE;
         desiredTrack = null;

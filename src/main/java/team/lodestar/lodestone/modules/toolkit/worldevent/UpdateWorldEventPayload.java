@@ -40,15 +40,25 @@ public record UpdateWorldEventPayload(UUID uuid, CompoundTag eventData) implemen
 
     public static void handle(UpdateWorldEventPayload payload, IPayloadContext context) {
         ClientLevel level = Minecraft.getInstance().level;
-        if (level != null) {
-            var worldData = level.getData(LodestoneAttachmentTypes.WORLD_EVENT_DATA);
-            for (WorldEventInstance instance : worldData.activeWorldEvents) {
-                if (instance.uuid.equals(payload.uuid())) {
-                    instance.deserializeNBT(payload.eventData());
-                    break;
-                }
+        if (level == null) return;
+        var worldData = level.getData(LodestoneAttachmentTypes.WORLD_EVENT_DATA);
+        if (apply(worldData.activeWorldEvents, payload)) return;
+        // Also the inbound queue, or an event that changes state on its very first server tick
+        // loses that update outright: the client only moves inbound -> active on ITS next tick,
+        // and until then this lookup would not find the instance the sync packet just created.
+        // The symptom is a client stuck on whatever state it was created with, until some later
+        // update happens to arrive after it has been promoted.
+        apply(worldData.inboundWorldEvents, payload);
+    }
+
+    private static boolean apply(Iterable<WorldEventInstance> instances, UpdateWorldEventPayload payload) {
+        for (WorldEventInstance instance : instances) {
+            if (instance.uuid.equals(payload.uuid())) {
+                instance.deserializeNBT(payload.eventData());
+                return true;
             }
         }
+        return false;
     }
 
     @Override

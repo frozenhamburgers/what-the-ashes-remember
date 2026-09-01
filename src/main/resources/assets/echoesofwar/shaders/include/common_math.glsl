@@ -1,5 +1,4 @@
-// Trimmed from Lodestone's common_math.glsl: only the depth-reconstruction
-// helpers used here are kept.
+// Trimmed from Lodestone's common_math.glsl: only the depth reconstruction helpers used here are kept.
 
 float getDepth(sampler2D DepthBuffer, vec2 uv) {
     return texture(DepthBuffer, uv).r;
